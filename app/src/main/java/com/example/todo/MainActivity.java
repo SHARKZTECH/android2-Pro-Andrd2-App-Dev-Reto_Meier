@@ -2,14 +2,13 @@ package com.example.todo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,18 +26,31 @@ public class MainActivity extends AppCompatActivity {
         aa=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,todoItems);
         listView.setAdapter(aa);
 
-        txt.setOnKeyListener(new View.OnKeyListener() {
+        Button btn=findViewById(R.id.button2);
+
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN)
-                    if(i==KeyEvent.KEYCODE_ENTER){
-                        todoItems.add(0,txt.getText().toString());
-                        aa.notifyDataSetChanged();
-                        txt.setText("");
-                        return true;
-                    }
-                return false;
+            public void onClick(View view) {
+                todoItems.add(0,txt.getText().toString());
+                aa.notifyDataSetChanged();
+                txt.setText("");
             }
         });
+
+
+//        txt.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+//                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN)
+//                    if(i==KeyEvent.KEYCODE_ENTER){
+//                        todoItems.add(0,txt.getText().toString());
+//                        aa.notifyDataSetChanged();
+//                        txt.setText("");
+//                        return true;
+//                    }
+//                return false;
+//            }
+//        });
     }
+
 }
